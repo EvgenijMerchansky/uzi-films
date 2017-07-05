@@ -1,4 +1,4 @@
-const initialState = [];
+const initialState = {info: ''};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -11,15 +11,12 @@ export default (state = initialState, action) => {
 
         localStorage.setItem(DbId(), JSON.stringify(action.payload));
 
-        return [...state,action.payload];
+        // return [...state,action.payload];
 
-      }else{
 
-        console.log(action.payload);
-
-        return [...state,action.payload]
-        // return Object.assign({}, state[0] = action.payload);
       }
+
+      return Object.assign({}, state, {info: action.payload} );
 
       break;
 

@@ -15,7 +15,9 @@ class Header extends Component{
       <div className="header">
         {/* <button>Sign in</button>
         <button disabled={true}>Sign out</button> */}
-        <Link to={`/register-page`}>Register</Link><br/>
+        <Link to={`/register-page`}>Registration</Link>' '
+        <Link to={`/`}>Home</Link><br/>
+
         <input placeholder="search" name="search"/>
         {/* <YourComponent/> */}
         {/* 2 links for modal (login and register) */}

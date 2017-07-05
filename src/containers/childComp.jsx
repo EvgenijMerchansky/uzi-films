@@ -21,13 +21,13 @@ import Movie from './movie/movie.jsx';
 
 class Chlidr extends Component {
   componentDidMount(){
-    this.props.getData()
+    this.props.inputState.length > 19 ? null : this.props.getData();
   }
   // constructor() {
   //
   // }
   render(){
-    // console.log(this);
+    console.log(this);
 
     // === home page films ===
     const homePFilms = this.props.inputState;

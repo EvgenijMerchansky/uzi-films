@@ -2,7 +2,7 @@ import axios from 'axios';
 import store from '../store';
 
 export const add = (arg) => {
-  console.log(arg);
+
   return {
     type: 'ADD',
     payload: arg
@@ -10,8 +10,6 @@ export const add = (arg) => {
 }
 
 export const addTodoTitle = (title) => {
-
-  console.log(title);
 
   return {
     type: 'NEW_TITLE',
@@ -65,8 +63,6 @@ export const getData = () => {
 
 export const newUser = (arg,password,repassword) => {
 
-  // console.log(arg.length,password.length,repassword.length);
-
   const id = () => {
     return '_' + Math.random().toString(36).substr(2, 9)
   };
@@ -75,7 +71,8 @@ export const newUser = (arg,password,repassword) => {
     name: arg.length < 3 || arg.length > 20 ? null : arg,
     id: id(),
     password: password.length < 8 || password.length > 20 ? null : password,
-    repassword: repassword == password ? repassword : null
+    repassword: repassword == password ? repassword : null,
+    disabled: true
   };
 
   const errors = {

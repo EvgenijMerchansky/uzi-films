@@ -28,7 +28,8 @@ class Movie extends Component {
                   <p>rate: {elem.popularity} <img width="13" src={require('./../../images/1600.png')}/></p>
                   <p>{elem.release_date}</p>
                   <p>{elem.overview}</p>
-                  <q>language: {elem.original_language}</q>
+                  <q>language: {elem.original_language}</q><br/><br/>
+                  <Link to="/">Back</Link>
                 </div>
               )
             }
