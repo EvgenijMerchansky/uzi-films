@@ -5,11 +5,13 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ReduxModal from 'react-redux-modal';
 
 
 import Childr from './containers/childComp.jsx';
 import Header from './components/header.jsx';
 import Movie from './containers/movie/movie.jsx';
+import Register from './containers/register.jsx';
 // import functionName './containers/childComp.jsx';
 
 class App extends Component{
@@ -18,15 +20,13 @@ class App extends Component{
     // console.log(this);
     return (
       <div className="App">
-        <Header/>
-        {/* <Childr/> */}
-
         {/* {userlogin == true ? <Header/> : <NotLogin/>} */}
         <Router>
           <div>
+            <Header/>
             <Route exact path="/" component={Childr}/>
-            {/* <Route path="/movie/id" component={Movie}/> */}
-            {/* <Route path="/movie/id:${elem.id}" component={Movie}/> */}
+            <Route path="/movie/id" component={Movie}/>
+            <Route path="/register-page" component={Register}/>
           </div>
         </Router>
       </div>
@@ -38,7 +38,10 @@ class App extends Component{
 
 ReactDOM.render(
   <Provider store={ store }>
-    <App />
+    <div>
+      <App />
+      <ReduxModal />
+    </div>
   </Provider>,document.getElementById('root'));
 registerServiceWorker();
 

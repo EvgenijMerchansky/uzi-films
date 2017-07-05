@@ -1,16 +1,19 @@
-// const initialState = {
-//   home_page_films_most_popular: ''
-// };
-
 const initialState = []
 
 export default function(state = initialState, action) {
-  console.log(action.payload, 'with reducer');
+
   switch (action.type) {
 
     case 'ADD_DATA':
-      return [...state,action.payload]
-      // return Object.assign({},state,{home_page_films_most_popular: action.payload});
+
+    let newID = () => {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
+    action.payload.id = newID();
+
+    return [...state,action.payload];
+
     default:
       return state
   }

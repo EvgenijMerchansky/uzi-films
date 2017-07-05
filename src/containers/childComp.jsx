@@ -32,15 +32,13 @@ class Chlidr extends Component {
     // === home page films ===
     const homePFilms = this.props.inputState;
     const wrappedFilms = homePFilms.map((elem,index) => {
-      console.log(elem.id, 'in general')
+      // console.log(elem.id, 'in general')
       return (
         <div className="film__card" key={index}>
-          <h1>{elem.title}</h1>
-          {/* <Router>
-            <div>
-              <Link to={`/movie/id:${elem.id}`}>{elem.title}</Link>
-            </div>
-          </Router> */}
+          {/* <h1>{elem.title}</h1> */}
+
+          <Link to={`/movie/id/:${elem.id}`}>{elem.title}</Link>
+
           {/* <Link to="/movie">{elem.title} (must be a router link)</Link> */}
           <img src={`https://image.tmdb.org/t/p/w500${elem.poster_path}`}/>
           <p>rate: {elem.popularity} <img width="13" src={require('./../images/1600.png')}/></p>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store';
 
 export const add = (arg) => {
   console.log(arg);
@@ -32,16 +33,11 @@ export const getData = () => {
           'content-type': 'application/json;charset=utf-8'
         },
         params: {
-          // part : 'id ,snippet',
-          // q: q,
-          // type: 'video',
-          // key: 'AIzaSyDidihTEViX7bkm17xLglRF51mjonDSw-I',
-          // maxResults: 10
+
         }
       }).then(response => {
 
         const filmData = response.data.results
-        // console.log(filmData, 'my response');
         filmData.map((elem,index) => {
 
           return dispatch({
@@ -58,7 +54,7 @@ export const getData = () => {
             }
 
           })
-          // console.log(elem)
+
         })
 
       })
@@ -66,3 +62,34 @@ export const getData = () => {
     }
 
   }
+
+export const newUser = (arg,password,repassword) => {
+
+  // console.log(arg.length,password.length,repassword.length);
+
+  const id = () => {
+    return '_' + Math.random().toString(36).substr(2, 9)
+  };
+
+  const newUserDATA = {
+    name: arg.length < 3 || arg.length > 20 ? null : arg,
+    id: id(),
+    password: password.length < 8 || password.length > 20 ? null : password,
+    repassword: repassword == password ? repassword : null
+  };
+
+  const errors = {
+    ErrorName: "Don't walid login!",
+    ErrorPassword: "Don't walid password!",
+    ErrorRepassword: "Passwords do not match!"
+  };
+
+    return (dispatch) => {
+
+      store.dispatch({
+        type: 'NEW_USER',
+        payload: newUserDATA.name && newUserDATA.password && newUserDATA.repassword != null ? newUserDATA : errors
+      })
+
+    }
+}
