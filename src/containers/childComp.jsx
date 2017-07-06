@@ -30,7 +30,7 @@ class Chlidr extends Component {
     console.log(this);
 
     // === home page films ===
-    const homePFilms = this.props.inputState;
+    const homePFilms = this.props.inputState.firstReducer;
     const wrappedFilms = homePFilms.map((elem,index) => {
       // console.log(elem.id, 'in general')
       return (
@@ -85,7 +85,7 @@ class Chlidr extends Component {
 
 function mapStateToProps(state){
   return{
-    inputState: state.firstReducer
+    inputState: state
   }
 }
 

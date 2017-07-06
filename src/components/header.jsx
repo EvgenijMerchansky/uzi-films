@@ -11,11 +11,16 @@ class Header extends Component{
   //
   // }
   render(){
+    console.log(this)
+    // console.log(this.props.header.loginReducer.name)
+
     return (
       <div className="header">
+        {typeof   this.props.header.loginReducer.name == 'undefined' ? '' :  `welcome! ${this.props.header.loginReducer.name} !`}
         {/* <button>Sign in</button>
         <button disabled={true}>Sign out</button> */}
-        <Link to={`/register-page`}>Registration</Link>' '
+        <Link to={`/login-page`}>Login</Link>' '
+        <Link to={`/register-page`}>Registration</Link><br/>
         <Link to={`/`}>Home</Link><br/>
 
         <input placeholder="search" name="search"/>
@@ -41,4 +46,16 @@ class Header extends Component{
   }
 }
 
-export default Header;
+function mapStateToProps(state){
+  return{
+    header: state
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    // newUser
+  },dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

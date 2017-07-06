@@ -9,15 +9,16 @@ export default (state = initialState, action) => {
 
       if(action.payload.name && action.payload.password && action.payload.repassword){
 
-        localStorage.setItem(DbId(), JSON.stringify(action.payload));
+        localStorage.setItem(action.payload.name, JSON.stringify(action.payload));
 
-        // return [...state,action.payload];
+        action.payload.registrated = true;
 
+        return Object.assign({}, state, {info: action.payload});
 
       }
+      console.log(state,'state');
 
       return Object.assign({}, state, {info: action.payload} );
-
       break;
 
     default:

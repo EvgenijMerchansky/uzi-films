@@ -72,7 +72,10 @@ export const newUser = (arg,password,repassword) => {
     id: id(),
     password: password.length < 8 || password.length > 20 ? null : password,
     repassword: repassword == password ? repassword : null,
-    disabled: true
+    favorites: [],
+    watchLater: [],
+    registrated: false,
+    logined: false
   };
 
   const errors = {
@@ -89,4 +92,27 @@ export const newUser = (arg,password,repassword) => {
       })
 
     }
+}
+
+export const userCheck = (login,password) => {
+
+  const id = () => {
+    return '_' + Math.random().toString(36).substr(2, 9)
+  };
+  // console.log(login, password, 'in action');
+
+  console.log(this,'action')
+  return{
+    type: 'CHECK_USER',
+    payload: {
+      name: login,
+      id: id(),
+      password: password,
+      favorites: [],
+      watchLater: [],
+      registrated: false,
+      logined: false,
+      valid: false
+    }
+  }
 }

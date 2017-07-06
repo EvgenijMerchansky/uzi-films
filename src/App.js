@@ -12,6 +12,7 @@ import Childr from './containers/childComp.jsx';
 import Header from './components/header.jsx';
 import Movie from './containers/movie/movie.jsx';
 import Register from './containers/register.jsx';
+import Login from './containers/login.jsx';
 // import functionName './containers/childComp.jsx';
 
 class App extends Component{
@@ -26,6 +27,7 @@ class App extends Component{
             <Header/>
             <Route exact path="/" component={Childr}/>
             <Route path="/movie/id" component={Movie}/>
+            <Route path="/login-page" component={Login}/>
             <Route path="/register-page" component={Register}/>
           </div>
         </Router>
