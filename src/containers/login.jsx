@@ -15,14 +15,12 @@ class Login extends Component {
     e.preventDefault();
     this.props.userCheck(this.inputNewLogin.value, this.inputNewPassword.value);
 
-    return true
-
   }
 
   render(){
     console.log(this);
     const redirect = this.props.login.registerReducer.redirect;
-      console.log(redirect)
+    // console.log(redirect)
 
     return(
       <div>

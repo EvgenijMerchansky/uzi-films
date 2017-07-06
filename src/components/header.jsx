@@ -16,7 +16,7 @@ class Header extends Component{
 
     return (
       <div className="header">
-        {typeof   this.props.header.loginReducer.name == 'undefined' ? '' :  `welcome! ${this.props.header.loginReducer.name} !`}
+        {typeof   this.props.header.loginReducer.name == 'undefined' ? '' :  `welcome! ${this.props.header.loginReducer.name} !`}<br/>
         {/* <button>Sign in</button>
         <button disabled={true}>Sign out</button> */}
         <Link to={`/login-page`}>Login</Link>' '
