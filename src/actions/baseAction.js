@@ -116,3 +116,24 @@ export const userCheck = (login,password) => {
     }
   }
 }
+
+export const change = (typingAttribute,listFilms) => {
+
+  const changeF = listFilms.filter((elem, index) => {
+    const value = typingAttribute.toLowerCase();
+    // console.log(elem);
+    return ~elem.props.children[0].props.children.toLowerCase().indexOf(value);
+
+  })
+
+  // console.log(listFilms)
+
+  return (dispatch) => {
+    dispatch({
+      type: 'CHANGE_LIST',
+      payload: changeF
+    })
+
+  }
+
+}

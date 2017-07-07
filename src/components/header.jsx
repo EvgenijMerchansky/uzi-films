@@ -16,14 +16,14 @@ class Header extends Component{
 
     return (
       <div className="header">
-        {typeof   this.props.header.loginReducer.name == 'undefined' ? '' :  `welcome! ${this.props.header.loginReducer.name} !`}<br/>
+        {typeof this.props.header.loginReducer.name == 'undefined' ? '' :  `welcome! ${this.props.header.loginReducer.name} !`}<br/>
         {/* <button>Sign in</button>
         <button disabled={true}>Sign out</button> */}
         <Link to={`/login-page`}>Login</Link>' '
         <Link to={`/register-page`}>Registration</Link><br/>
         <Link to={`/`}>Home</Link><br/>
 
-        <input placeholder="search" name="search"/>
+
         {/* <YourComponent/> */}
         {/* 2 links for modal (login and register) */}
         {/* base structure: */}

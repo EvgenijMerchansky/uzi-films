@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './childComp.css';
 
-import { add, getData } from '../actions/baseAction';
+import { add, getData, change } from '../actions/baseAction';
+import { ganres, onlyGanre } from '../actions/actionGanreRequests';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
@@ -20,14 +21,30 @@ import Movie from './movie/movie.jsx';
 // }
 
 class Chlidr extends Component {
-  componentDidMount(){
-    this.props.inputState.length > 19 ? null : this.props.getData();
+  componentWillMount(){
+
+    this.props.inputState.firstReducer.length > 19 ? null : this.props.getData();
+    this.props.genreState.length == 0 && this.props.genreState.length < 19 ? this.props.ganres() : null;
+
   }
-  // constructor() {
-  //
-  // }
+  constructor(props) {
+    super(props);
+  }
   render(){
     console.log(this);
+
+    // === all genres ===
+
+    const allGenres = this.props.genreState,
+          processedAllGenres = allGenres.map((elem,index) => {
+            // console.log()
+            return <button onClick={() => {this.props.onlyGanre(elem.name)}} className="ganre-item" key={index}>{elem.name}</button>
+          })
+
+    // === END all genres ===
+
+    const filtered = this.props.filteredState;
+
 
     // === home page films ===
     const homePFilms = this.props.inputState.firstReducer;
@@ -35,11 +52,9 @@ class Chlidr extends Component {
       // console.log(elem.id, 'in general')
       return (
         <div className="film__card" key={index}>
-          {/* <h1>{elem.title}</h1> */}
 
           <Link to={`/movie/id/:${elem.id}`}>{elem.title}</Link>
 
-          {/* <Link to="/movie">{elem.title} (must be a router link)</Link> */}
           <img src={`https://image.tmdb.org/t/p/w500${elem.poster_path}`}/>
           <p>rate: {elem.popularity} <img width="13" src={require('./../images/1600.png')}/></p>
           <p>{elem.release_date}</p>
@@ -49,34 +64,15 @@ class Chlidr extends Component {
       )
     })
     // === END home page films ===
-
-
-
-
-
-
-
-
-
     return(
       <div className='film'>
-        {wrappedFilms}
+        {processedAllGenres}<br/><br/>
+        {/* <button >only ganre</button> */}
+        {/* <button onClick={() => {this.props.ganres()}}>get</button> */}
+        <input placeholder="search" ref={(input) => {this.inputSearch = input}} name="search" onChange={() => {this.props.change(this.inputSearch.value, wrappedFilms)}}/><br/>
+        {filtered.length > 0 ? filtered : wrappedFilms}
 
-        {/* <Router> */}
-          {/* <div> */}
-            {/* <li><Link to="/movie">router test</Link></li> */}
-            {/* <ul>
-              <li><Link to="/">router test</Link></li>
-              <li><Link to="/about">Header</Link></li>
-            </ul> */}
-
-            {/* <hr/> */}
-
-            {/* <Route exact path="/" component={App}/> */}
-            {/* <Route path="/movie" component={Movie}/> */}
-          {/* </div> */}
-        {/* </Router> */}
-
+{/*  */}
       </div>
     )
   }
@@ -85,14 +81,19 @@ class Chlidr extends Component {
 
 function mapStateToProps(state){
   return{
-    inputState: state
+    inputState: state,
+    filteredState: state.sortReducer.filtered,
+    genreState: state.genresReducer
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     add,
-    getData
+    getData,
+    change,
+    ganres,
+    onlyGanre
   },dispatch)
 }
 
