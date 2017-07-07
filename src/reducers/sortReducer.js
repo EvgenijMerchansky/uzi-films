@@ -1,5 +1,6 @@
 const initialState = {
-  filtered: []
+  filtered: [],
+  filteredGenre: []
 }
 
 export default (state=initialState,action) => {
@@ -9,6 +10,10 @@ export default (state=initialState,action) => {
       return Object.assign({}, state, {filtered: action.payload});
 
       break;
+    case 'CHANGE_GENRE_LIST':
+
+      return Object.assign({}, state, {filteredGenre: action.payload})
+
     default:
       return state
   }

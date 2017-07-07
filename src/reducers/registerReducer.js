@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
         return Object.assign({}, state, {info: action.payload});
 
       }
-      // console.log(state,'state');
 
       return Object.assign({}, state, {info: action.payload} );
       break;

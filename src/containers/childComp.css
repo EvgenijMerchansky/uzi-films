@@ -35,3 +35,7 @@ h1:hover{
   color: #656565;
   cursor: pointer;
 }
+
+.ganre-item{
+  margin: 10px;
+}
